@@ -2,12 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Carousel as Container } from "react-responsive-carousel";
 import { CiShoppingCart } from "react-icons/ci";
-
-interface Item {
-  label: string;
-  image: string;
-  name: string;
-}
+import { Item } from "@/app/schemas";
+import Image from "next/image";
 
 interface Props {
   list: Item[];
@@ -57,15 +53,23 @@ export default function Carousel({ list }: Props) {
 
 function renderCard(item: Item, index: number) {
   return (
-    <div className="flex flex-col">
-      <div key={index} className="bg-gray-100 p-6 flex flex-col gap-16 items-center">
+    <div className="flex flex-col" key={index}>
+      <div className="bg-gray-100 p-6 flex flex-col gap-16 items-center">
         <div className="flex justify-between w-full">
           <div>{item.label}</div>
           <div></div>
         </div>
 
-        <img src={item.image} alt={item.name} className="w-full" />
-
+        <div className="relative w-full h-auto">
+          <Image
+            src={item.image}
+            alt={"Not Found"}
+            layout="responsive"
+            width={500}
+            height={300}
+            objectFit="contain"
+          />
+        </div>
         <div className="flex items-center px-4 py-2 bg-white gap-4 text-gray-400 ">
           <CiShoppingCart className="text-2xl font-bold" />
           <span>Add to cart</span>

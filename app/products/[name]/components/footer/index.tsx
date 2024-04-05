@@ -70,8 +70,8 @@ export default function Footer() {
       <div className="p-4 md:hidden">
         <ul>
           {["ABOUT US", "INFORMATION", "ACCOUNT", "STORE", "CONTACT US"].map((link, index) => (
-            <li className="mb-4">
-              <Link href="/about-us" className="block text-left" key={index}>
+            <li className="mb-4" key={index}>
+              <Link href="/about-us" className="block text-left">
                 {link}
               </Link>
             </li>

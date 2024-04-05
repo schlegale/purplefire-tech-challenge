@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Details() {
   const [activeTab, setActiveTab] = useState("Description");
@@ -10,10 +11,10 @@ export default function Details() {
     <>
       <div className="flex flex-col md:flex-row flex-wrap items-start justify-start gap-4 my-24 mx-10">
         <div className="md:flex md:flex-row-reverse justify-end md:w-1/2">
-          {/* Main Image */}
-          <div className="flex flex-col items-center my-4 md:my-0 md:mx-4 bg-gray-100 aspect-square justify-center">
-            <div className="w-4/5 flex justify-center items-center">
-              <img src="/tv-1.png" alt="Selected TV" className="object-cover w-full h-full" />
+          {/* Main Image Container */}
+          <div className="relative flex flex-col items-center my-4 md:my-0 md:mx-4 bg-gray-100 aspect-square justify-center w-full h-full">
+            <div className="relative w-4/5 h-full">
+              <Image src="/tv-1.png" alt="Selected TV" layout="fill" objectFit="contain" />
             </div>
           </div>
 
@@ -21,7 +22,7 @@ export default function Details() {
           <div className="flex flex-row md:flex-col justify-between gap-2 overflow-x-auto">
             {["/tv-1.png", "/tv-2.png", "/tv-3.png", "/tv-4.png"].map((src, index) => (
               <button className="border border-gray-200 p-4" key={index}>
-                <img src={src} alt={`TV Thumbnail ${index + 1}`} width="100" height="100" />
+                <Image src={src} alt={`TV Thumbnail ${index + 1}`} width="100" height="100" />
               </button>
             ))}
           </div>
@@ -63,7 +64,7 @@ export default function Details() {
                   "210 cm (83)",
                 ].map((e, index) => (
                   <button
-                    className={`py-4 px-10 rounded focus:outline-none ${
+                    className={`py-1 px-1 sm:py-4 sm:px-10 rounded focus:outline-none ${
                       index === 0
                         ? "bg-transparent border-2 text-orange-600 border-orange-600"
                         : "bg-transparent hover:bg-gray-100"
@@ -78,20 +79,26 @@ export default function Details() {
 
             <div className="flex flex-col border-t border-gray-200 pt-4">
               <span className="text-sm font-light">USD(incl. of all taxes)</span>
-              <div className="flex justify-between items-center my-2">
-                <div>
-                  <span className="text-3xl font-bold text-red-600 pr-4">$600.72</span>
-                  <span className="text-xl line-through text-gray-400">$800.00</span>
+              <div className="flex flex-col md:flex-row justify-between items-center my-2">
+                <div className="text-center md:text-left">
+                  <span className="text-xl md:text-3xl font-bold text-red-600 pr-4">$600.72</span>
+                  <span className="text-lg md:text-xl line-through text-gray-400">$800.00</span>
                 </div>
-                <div className="flex items-center border border-gray-300 text-3xl">
-                  <button className="px-4 py-2 border-r border-gray-300 text-gray-600">-</button>
-                  <input className="w-10 text-center" type="text" value="1" readOnly />
-                  <button className="px-4 py-2 border-l border-gray-300 text-gray-600">+</button>
+                <div className="flex items-center border border-gray-300 text-xl md:text-3xl mt-4 md:mt-0">
+                  <button className="px-2 md:px-4 py-1 md:py-2 border-r border-gray-300 text-gray-600">
+                    -
+                  </button>
+                  <input className="w-8 md:w-10 text-center" type="text" value="1" readOnly />
+                  <button className="px-2 md:px-4 py-1 md:py-2 border-l border-gray-300 text-gray-600">
+                    +
+                  </button>
                 </div>
               </div>
-              <div className="flex justify-between items-center">
-                <button className="bg-red-500 text-white py-4 px-16">Buy Now</button>
-                <button className="border border-red-500 text-red-500 py-4 px-16">
+              <div className="flex flex-col md:flex-row justify-between items-center mt-4">
+                <button className="bg-red-500 text-white py-2 md:py-4 px-8 md:px-16 mb-4 md:mb-0">
+                  Buy Now
+                </button>
+                <button className="border border-red-500 text-red-500 py-2 md:py-4 px-8 md:px-16">
                   Add to Cart
                 </button>
               </div>
@@ -121,33 +128,33 @@ export default function Details() {
       <div className="p-4 flex justify-center text-start ">
         {activeTab === "Description" && (
           <div className="md:w-1/2">
-            "The LG C2 42 (106cm) 4K Smart OLED evo TV is the best all-around OLED TV we've tested.
+            {`The LG C2 42 (106cm) 4K Smart OLED evo TV is the best all-around OLED TV we've tested.
             Although all OLEDs deliver similar fantastic picture quality, this one stands out for
             its value because it has many gaming oriented features that are great for gamers. *Only
             65G2 is shown in the image for example purposes. All 2022 LG OLED models feature
             eco-friendly packaging. **65C2 Stand model is at a minimum 39% lighter than the C1
-            series."
+            series.`}
           </div>
         )}
         {activeTab === "Specification" && (
           <div className="md:w-1/2">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam iaculis, metus eu rhoncus
+            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam iaculis, metus eu rhoncus
             efficitur, turpis sem tempus massa, id consectetur nunc purus in lectus. Donec non velit
             a odio volutpat volutpat in in nisi. Maecenas aliquet turpis lacus, id pharetra elit
             sagittis vel. Ut consectetur nisi quis ullamcorper pellentesque. Integer efficitur
             interdum nunc, ut elementum nulla. Phasellus feugiat nulla et rhoncus porttitor. Nullam
             at lectus sed turpis porttitor viverra accumsan hendrerit lorem. Praesent tincidunt nisi
-            at nunc suscipit malesuada."
+            at nunc suscipit malesuada.`}
           </div>
         )}
         {activeTab === "Reviews" && (
           <div className="md:w-1/2">
-            "Suspendisse potenti. Sed dapibus bibendum orci, eget semper diam tincidunt eget. Nulla
+            {`Suspendisse potenti. Sed dapibus bibendum orci, eget semper diam tincidunt eget. Nulla
             a mi non nulla fermentum molestie. Aenean magna massa, tempus quis risus nec,
             sollicitudin consectetur mi. Donec dictum nulla sed nulla semper elementum. Nulla dictum
             ultrices risus, id ornare arcu rutrum vel. Curabitur vestibulum id nisi at pellentesque.
             Aenean a lacinia tellus. Aliquam iaculis odio sit amet velit laoreet, non feugiat tellus
-            elementum."
+            elementum.`}
           </div>
         )}
       </div>
