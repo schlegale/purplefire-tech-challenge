@@ -1,86 +1,120 @@
-import Image from "next/image";
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
+import NextImage from "../image";
+import Link from "next/link";
 
 export default function Footer() {
+  const links = {
+    products: ["Furniture", "Decoration", "Storage", "Baby and child", "Connected home"],
+    rooms: [
+      "Living room",
+      "Dining room",
+      "Cooked",
+      "Bedroom",
+      "Bathroom",
+      "Office",
+      "Laundry",
+      "Garage",
+    ],
+    services: ["Click and collect", "Conception", "Installation", "Advices", "Gift card"],
+    about: ["Our story", "Our stores", "Our partners"],
+  };
+
   return (
-    <footer className="bg-orange-50 py-8">
+    <footer className="bg-orange-50 py-8 px-[10vw]">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row">
           <div className="flex flex-wrap mr-10 mb-4 sm:mb-0">
-            <h2 className="text-4xl font-bold">antic</h2>
+            <h2 className="text-4xl font-bold text-amber-900 opacity-75">antic</h2>
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 text-sm mb-4 sm:mb-0">
             <div>
-              <h3 className="text-lg font-semibold mb-4">Products</h3>
+              <h3 className="text-lg font-semibold mb-4 text-amber-900 opacity-75">Products</h3>
               <ul>
-                <li className="mb-2">Furniture</li>
-                <li className="mb-2">Decoration</li>
-                <li className="mb-2">Storage</li>
+                {links.products.map((link, index) => (
+                  <li className="mb-2" key={index}>
+                    {link}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Rooms</h3>
+              <h3 className="text-lg font-semibold mb-4 text-amber-900 opacity-75">Rooms</h3>
               <ul>
-                <li className="mb-2">Living room</li>
-                <li className="mb-2">Dining room</li>
+                {links.rooms.map((link, index) => (
+                  <li className="mb-2" key={index}>
+                    {link}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <h3 className="text-lg font-semibold mb-4 text-amber-900 opacity-75">Services</h3>
               <ul>
-                <li className="mb-2">Click and collect</li>
-                <li className="mb-2">Conception</li>
+                {links.services.map((link, index) => (
+                  <li className="mb-2" key={index}>
+                    {link}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">About</h3>
+              <h3 className="text-lg font-semibold mb-4 text-amber-900 opacity-75">About</h3>
               <ul>
-                <li className="mb-2">Our story</li>
-                <li className="mb-2">Our partners</li>
+                {links.about.map((link, index) => (
+                  <li className="mb-2" key={index}>
+                    {link}
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* We respect our planet Column */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">We respect our planet</h3>
-              <div className="mb-2">
-                <Image src="/footer-image.jpeg" width={150} height={150} alt="Not Found" />
+              <h3 className="text-lg font-semibold mb-4 text-amber-900 opacity-75">
+                We respect our planet
+              </h3>
+              <div className="mb-2 w-[250px] h-[150px] relative">
+                <NextImage src="/footer-image.jpeg" className="object-cover" />
               </div>
+
               <p className="mb-2">
                 {`We're taking positive steps to reduce our impact on the planet. For us, that means
                 retailing responsibly.`}
               </p>
-              <a href="#" className="text-blue-600 hover:underline">
+              <Link
+                href="#"
+                className="text-sm font-bold mt-6 inline-block text-amber-800 opacity-75"
+              >
                 Learn more &gt;
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Socials Section */}
         <div className="flex justify-center text-3xl space-x-4 my-4">
-          <FaFacebookSquare />
-          <FaTwitterSquare />
-          <FaLinkedin />
-          <FaInstagramSquare />
+          <FaFacebookSquare className="text-amber-900 opacity-50" />
+          <FaTwitterSquare className="text-amber-900 opacity-50" />
+          <FaLinkedin className="text-amber-900 opacity-50" />
+          <FaInstagramSquare className="text-amber-900 opacity-50" />
         </div>
 
         <div className="flex flex-col sm:flex-row flex-wrap items-center justify-between pt-4 mt-4 border-t">
           <div className="text-sm text-gray-500 mb-4 sm:mb-0">&copy; 2021 Agence DnD</div>
           <div className="text-sm text-gray-500 space-x-4">
-            <a href="#" className="hover:underline">
+            <Link href="#" className="hover:underline">
               Privacy policy
-            </a>
-            <a href="#" className="hover:underline">
+            </Link>
+            <Link href="#" className="hover:underline">
               Term of service
-            </a>
-            <a href="#" className="hover:underline">
+            </Link>
+            <Link href="#" className="hover:underline">
               Language
-            </a>
+            </Link>
           </div>
         </div>
       </div>

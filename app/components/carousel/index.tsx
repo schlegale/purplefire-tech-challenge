@@ -48,6 +48,7 @@ export default function Carousel({ items, className }: Props) {
         onChange={(index) => setCurrentIndex(index)}
         showArrows={false}
         showStatus={false}
+        showThumbs={false}
       >
         {pages.map((page, index) => (
           <div key={index}>
@@ -63,7 +64,7 @@ export default function Carousel({ items, className }: Props) {
       </Container>
 
       {/* Footer */}
-      <div className="flex justify-between items-center mt-4 px-4 py-6 bg-white">
+      <div className="flex justify-between items-center mt-4 py-6 bg-white px-[10vw]">
         <h2 className="text-4xl font-semibold">Inspirations</h2>
         <p className="text-sm text-gray-500 w-1/2">
           Our experts are keen to stay on top of trends in order to offer you new inspirations for
