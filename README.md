@@ -20,9 +20,9 @@ This command reads the `package.json` file and installs all the dependencies req
 
 To start the application in development mode, which offers live reloading and debugging capabilities, simply run:
 
-\```bash
+```bash
 npm run dev
-\```
+```
 
 This command fires up a development server, allowing you to test and iterate on the application in real-time.
 
