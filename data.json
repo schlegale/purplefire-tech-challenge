@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "LG C2 42 (106CM) 4K SMART OLED EVO TV | WEBOS | CINEMA",
+      "name": "LG EVO",
+      "brand": "LG",
+      "model": "OLED42C2PSA",
+      "stock": 2,
+      "rating": 3.5,
+      "images": ["/lg-evo-1.png", "/lg-evo-2.png", "/lg-evo-3.png", "/lg-evo-4.png"],
+      "price": {
+        "current_price": 600.72,
+        "original_price": 800.0,
+        "currency": "USD"
+      },
+      "features": [
+        "A9 Gen5 AI Processor with AI Picture Pro & AI 4K Upscaling",
+        "Pixel Dimming, Perfect Black, 100% Color Fidelity & Color Volume",
+        "Hands-free Voice Control, Always Ready",
+        "Dolby Vision IQ with Precision Detail, Dolby Atmos, Filmmaker Mode",
+        "Eye Comfort Display: Low-Blue Light, Flicker-Free"
+      ],
+      "sizes": [106, 164, 196, 210],
+      "label": { "title": "HOT", "color": "yellow" }
+    },
+    {
+      "id": "2",
+      "title": "Sony BRAVIA XR Android TV",
+      "name": "SONY BRAVIA",
+      "brand": "Sony",
+      "model": "BRAVIA XR",
+      "stock": 4,
+      "rating": 4.5,
+      "images": ["/sony-bravia-1.png"],
+      "price": {
+        "current_price": 800.22,
+        "original_price": 1000.66,
+        "currency": "USD"
+      },
+      "features": [
+        "Full Array LED",
+        "XR Cognitive Processor",
+        "Google TV with Voice Search",
+        "HDMI 2.1, 4K120, VRR, ALLM",
+        "Acoustic Multi-Audio, Dolby Vision & Atmos"
+      ],
+      "sizes": [106, 164, 196, 210],
+      "label": { "title": "NEW", "color": "green" }
+    },
+    {
+      "id": "3",
+      "title": "Mi P1 Smart Android HD TV",
+      "name": "MI P1",
+      "brand": "Xiaomi",
+      "model": "Mi P1",
+      "stock": 10,
+      "rating": 3,
+      "images": ["/mi-p1-1.png"],
+      "price": {
+        "current_price": 400.0,
+        "original_price": 440.0,
+        "currency": "USD"
+      },
+      "features": [
+        "LED Panel",
+        "Android TV with Google Assistant",
+        "Chromecast Built-in",
+        "Data Saver Mode",
+        "Dolby Audio"
+      ],
+      "sizes": [106, 164, 196, 210],
+      "label": { "title": "-10%", "color": "red" }
+    },
+    {
+      "id": "4",
+      "title": "Konka OLED Android TV",
+      "name": "KONKA OLED",
+      "brand": "Konka",
+      "model": "Konka Android",
+      "stock": 1,
+      "rating": 5,
+      "images": ["/konka-oled-1.png"],
+      "price": {
+        "current_price": 700.0,
+        "original_price": null,
+        "currency": "USD"
+      },
+      "features": [
+        "OLED Panel",
+        "HDR10 & HLG",
+        "Android TV with Google Play Store",
+        "Voice Remote Control",
+        "Dolby Vision & Atmos"
+      ],
+      "sizes": [106, 164, 196, 210],
+      "label": { "title": "HOT", "color": "yellow" }
+    },
+    {
+      "id": "5",
+      "title": "TCL Roku Android TV",
+      "name": "TCL ROKU",
+      "brand": "TCL",
+      "model": "Roku",
+      "stock": 10,
+      "rating": 5,
+      "images": ["/tcl-roku-1.png"],
+      "price": {
+        "current_price": 800.0,
+        "original_price": null,
+        "currency": "USD"
+      },
+      "features": [
+        "HDR10",
+        "Roku TV Smart Platform",
+        "Easy Voice Control with Siri, Alexa, and Hey Google",
+        "4 HDMI Inputs (1 eARC)",
+        "Natural Motion 240 for Smooth Clarity"
+      ],
+      "sizes": [106, 164, 196, 210],
+      "label": { "title": "2 Years Warranty", "color": "violet" }
+    }
+  ]
+}

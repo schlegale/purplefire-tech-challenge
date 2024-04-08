@@ -1,11 +1,37 @@
 "use client";
 import { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import Image from "next/image";
+import { Product } from "@/app/schemas";
+import { useGlobalContext } from "@/app/context/store";
+import Link from "next/link";
+import NextImage from "@/app/components/image";
 
-export default function Details() {
+interface Props {
+  data: Product;
+}
+
+export default function Details({ data }: Props) {
+  const { addToCart } = useGlobalContext();
+  const [activeSize, setActiveSize] = useState(data.sizes[0]);
   const [activeTab, setActiveTab] = useState("Description");
+  const [activeImage, setActiveImage] = useState(data.images[0]);
+  const [quantity, setQuantity] = useState(1);
   const tabs = ["Description", "Specification", "Reviews"];
+
+  const StarRating = (rating: number) => {
+    const roundedRating = Math.round(rating);
+    const stars = [];
+
+    for (let i = 0; i < roundedRating; i++) {
+      stars.push(<FaStar key={`filled_${i}`} />);
+    }
+
+    for (let i = roundedRating; i < 5; i++) {
+      stars.push(<FaRegStar key={`empty_${i}`} />);
+    }
+
+    return <div className="flex mb-4 text-3xl text-orange-600">{stars}</div>;
+  };
 
   return (
     <>
@@ -14,15 +40,15 @@ export default function Details() {
           {/* Main Image Container */}
           <div className="relative flex flex-col items-center my-4 md:my-0 md:mx-4 bg-gray-100 aspect-square justify-center w-full h-full">
             <div className="relative w-4/5 h-full">
-              <Image src="/tv-1.png" alt="Selected TV" layout="fill" objectFit="contain" />
+              <NextImage src={activeImage} className="object-contain" />
             </div>
           </div>
 
           {/* Thumbnails Row */}
           <div className="flex flex-row md:flex-col justify-between gap-2 overflow-x-auto">
-            {["/tv-1.png", "/tv-2.png", "/tv-3.png", "/tv-4.png"].map((src, index) => (
+            {data.images.map((src, index) => (
               <button className="border border-gray-200 p-4" key={index}>
-                <Image src={src} alt={`TV Thumbnail ${index + 1}`} width="100" height="100" />
+                <NextImage src={src} width={100} />
               </button>
             ))}
           </div>
@@ -31,74 +57,83 @@ export default function Details() {
         {/* Product Details */}
         <div className="flex-1 p-6">
           <div className="text-left">
-            <p className="mb-2">Brand: LG </p>
-            <p className="mb-2">Model: OLED42C2PSA</p>
-            <p className="mb-2">Availability: Only 2 in Stock</p>
+            <p className="mb-2">Brand: {data.brand}</p>
+            <p className="mb-2">Model: {data.model}</p>
+            <p className="mb-2">Availability: Only {data.stock} in Stock</p>
 
-            <h2 className="text-3xl font-bold mb-4">
-              LG C2 42 (106CM) 4K SMART OLED EVO TV | WEBOS | CINEMA HDR
-            </h2>
-            <span className="flex mb-4 text-3xl text-orange-600">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaRegStar />
-            </span>
+            <h2 className="text-3xl font-bold mb-4">{data.title}</h2>
+            {StarRating(data.rating)}
 
             <ul className="list-disc ml-5 mb-4">
-              <li>a9 Gen5 AI Processor with AI Picture Pro & AI 4K Upscaling</li>
-              <li>Pixel Dimming, Perfect Black, 100% Color Fidelity & Color Volume</li>
-              <li>Hands-free Voice Control, Always Ready</li>
-              <li>Dolby Vision IQ with Precision Detail, Dolby Atmos, Filmmaker Mode</li>
-              <li>Eye Comfort Display: Low-Blue Light, Flicker-Free</li>
+              {data.features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
             </ul>
 
             <div className="border-t border-gray-200">
               <div className="flex flex-wrap py-4">
-                {[
-                  "106 cm (42)",
-                  "121 cm (48)",
-                  "139 cm (55)",
-                  "164 cm (65)",
-                  "196 cm (77)",
-                  "210 cm (83)",
-                ].map((e, index) => (
+                {data.sizes.map((size, index) => (
                   <button
                     className={`py-1 px-1 sm:py-4 sm:px-10 rounded focus:outline-none ${
-                      index === 0
+                      activeSize === size
                         ? "bg-transparent border-2 text-orange-600 border-orange-600"
                         : "bg-transparent hover:bg-gray-100"
                     }`}
                     key={index}
+                    onClick={() => setActiveSize(size)}
                   >
-                    {e}
+                    {`${size} cm (${Math.round(size / 2.54)})`}
                   </button>
                 ))}
               </div>
             </div>
 
+            {/* Price */}
             <div className="flex flex-col border-t border-gray-200 pt-4">
               <span className="text-sm font-light">USD(incl. of all taxes)</span>
               <div className="flex flex-col md:flex-row justify-between items-center my-2">
                 <div className="text-center md:text-left">
-                  <span className="text-xl md:text-3xl font-bold text-red-600 pr-4">$600.72</span>
-                  <span className="text-lg md:text-xl line-through text-gray-400">$800.00</span>
+                  <span className="text-xl md:text-3xl font-bold text-red-600 pr-4">
+                    ${data.price.current_price}
+                  </span>
+                  <span className="text-lg md:text-xl line-through text-gray-400">
+                    ${data.price.original_price}
+                  </span>
                 </div>
                 <div className="flex items-center border border-gray-300 text-xl md:text-3xl mt-4 md:mt-0">
-                  <button className="px-2 md:px-4 py-1 md:py-2 border-r border-gray-300 text-gray-600">
+                  <button
+                    className="px-2 md:px-4 py-1 md:py-2 border-r border-gray-300 text-gray-600"
+                    onClick={() =>
+                      setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1))
+                    }
+                  >
                     -
                   </button>
-                  <input className="w-8 md:w-10 text-center" type="text" value="1" readOnly />
-                  <button className="px-2 md:px-4 py-1 md:py-2 border-l border-gray-300 text-gray-600">
+                  <input
+                    className="w-8 md:w-10 text-center"
+                    type="text"
+                    value={quantity}
+                    readOnly
+                  />
+                  <button
+                    className="px-2 md:px-4 py-1 md:py-2 border-l border-gray-300 text-gray-600"
+                    onClick={() => setQuantity((prevQuantity) => prevQuantity + 1)}
+                  >
                     +
                   </button>
                 </div>
               </div>
               <div className="flex flex-col md:flex-row justify-between items-center mt-4">
-                <button className="bg-red-500 text-white py-2 md:py-4 px-8 md:px-16 mb-4 md:mb-0">
+                <Link
+                  className="bg-red-500 text-white py-2 md:py-4 px-8 md:px-16 mb-4 md:mb-0"
+                  href={"/checkouts/success"}
+                >
                   Buy Now
-                </button>
-                <button className="border border-red-500 text-red-500 py-2 md:py-4 px-8 md:px-16">
+                </Link>
+                <button
+                  className="border border-red-500 text-red-500 py-2 md:py-4 px-8 md:px-16"
+                  onClick={() => addToCart({ product: data, quantity: quantity })}
+                >
                   Add to Cart
                 </button>
               </div>

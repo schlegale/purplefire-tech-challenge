@@ -7,4 +7,20 @@ body {
   color: #000;
   background: #fff;
   font-weight: 300;
+  scroll-behavior: smooth;
+}
+
+input,
+input:focus,
+input:active,
+select,
+select:focus,
+select:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+* {
+  scroll-behavior: smooth;
 }

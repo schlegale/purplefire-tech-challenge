@@ -12,9 +12,13 @@ import { HiChevronDown } from "react-icons/hi2";
 import Link from "next/link";
 import Select from "../select";
 import Cart from "../cart";
+import Favorites from "../favorites";
+import { useGlobalContext } from "@/app/context/store";
 
 export default function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showFavorites, setShowFavorites] = useState(false);
+  const { cart } = useGlobalContext();
 
   return (
     <>
@@ -71,11 +75,14 @@ export default function Nav() {
             <CiUser className="flex sm:hidden text-2xl font-bold" />
 
             {/* Web & Mobile Icons */}
-            <CiHeart className="text-2xl font-bold" />
-            <button className="relative text-gray-800 hover:text-gray-600">
-              <CiShoppingCart className="text-2xl font-bold" onClick={() => setIsOpen(true)} />
+            <CiHeart
+              className="text-2xl font-bold cursor-pointer	"
+              onClick={() => setShowFavorites(true)}
+            />
+            <button className="relative text-gray-800 hover:text-gray-600 cursor-pointer	">
+              <CiShoppingCart className="text-2xl font-bold" onClick={() => setShowCart(true)} />
               <span className="absolute top-0 right-0 transform -translate-y-1/2 translate-x-1/2 inline-flex px-2 py-1 text-xs font-bold text-red-100 bg-red-600 rounded-full">
-                6
+                {cart.length}
               </span>
             </button>
           </div>
@@ -86,10 +93,17 @@ export default function Nav() {
           {/* Left side */}
           <div className="flex items-center justify-center bg-red-600 w-1/4 min-h-16">
             <div className="flex items-center space-x-4">
-              <CiMenuBurger />
+              <CiMenuBurger className="text-2xl" />
               <Select
                 label={"All Categories"}
-                options={["All Categories", "ESP", "DEU"]}
+                options={[
+                  "All Categories",
+                  "Televisions",
+                  "Smartphones",
+                  "Laptops",
+                  "Appliances",
+                  "Audio Systems",
+                ]}
                 className="w-36"
               />
             </div>
@@ -120,7 +134,8 @@ export default function Nav() {
         </nav>
       </div>
 
-      {isOpen && <Cart onClose={() => setIsOpen(false)} />}
+      {showCart && <Cart onClose={() => setShowCart(false)} />}
+      {showFavorites && <Favorites onClose={() => setShowFavorites(false)} />}
     </>
   );
 }

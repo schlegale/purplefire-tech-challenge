@@ -1,7 +1,20 @@
 import Link from "next/link";
 import { FaFacebookF, FaWhatsapp, FaInstagram, FaYoutube } from "react-icons/fa";
+import { CiLocationOn, CiMobile1 } from "react-icons/ci";
 
 export default function Footer() {
+  const links = {
+    information: [
+      "About",
+      "Delivery information",
+      "Privacy Policy",
+      "Sales",
+      "Terms & Conditions",
+      "EMI Payment",
+    ],
+    account: ["My Account", "My Orders", "Returns", "Shipping", "Wishlist", "Account Details"],
+    store: ["Affiliate", "Discounts", "Sale", "Contact", "All Collections"],
+  };
   return (
     <footer className="bg-gray-800 text-white p-10 text-start">
       <div className="hidden md:grid max-w-6xl mx-auto grid-cols-1 md:grid-cols-5 gap-8">
@@ -31,25 +44,43 @@ export default function Footer() {
         {/* Information */}
         <div>
           <h5 className="text-lg font-bold mb-4">INFORMATION</h5>
-          <Link href="/about">
-            <div className="block mt-2">About</div>
-          </Link>
+          {links.information.map((link, index) => (
+            <Link
+              className="block mt-2"
+              key={index}
+              href={`/${link.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              {link}
+            </Link>
+          ))}
         </div>
 
         {/* Account */}
         <div>
           <h5 className="text-lg font-bold mb-4">ACCOUNT</h5>
-          <Link href="/my-account">
-            <div className="block mt-2">My Account</div>
-          </Link>
+          {links.account.map((link, index) => (
+            <Link
+              className="block mt-2"
+              key={index}
+              href={`/${link.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              {link}
+            </Link>
+          ))}
         </div>
 
         {/* Store */}
         <div>
           <h5 className="text-lg font-bold mb-4">STORE</h5>
-          <Link href="/affiliate">
-            <div className="block mt-2">Affiliate</div>
-          </Link>
+          {links.store.map((link, index) => (
+            <Link
+              className="block mt-2"
+              key={index}
+              href={`/${link.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              {link}
+            </Link>
+          ))}
         </div>
 
         {/* Contact us */}
@@ -57,12 +88,18 @@ export default function Footer() {
           <h5 className="text-lg font-bold mb-4">CONTACT US</h5>
           <p>
             If you have any query, please contact us at{" "}
-            <Link href="mailto:needus24@gmail.com" className="text-blue-300">
+            <Link href="mailto:needus24@gmail.com" className="text-red-600">
               needus24@gmail.com
             </Link>
           </p>
-          <p className="mt-4">California, USA</p>
-          <p className="mt-2">+12012987481</p>
+          <p className="mt-4 flex items-center">
+            <CiLocationOn className="mr-2 text-xl" />
+            California, USA
+          </p>
+          <p className="mt-4 flex items-center">
+            <CiMobile1 className="mr-2 text-xl" />
+            +12012987481
+          </p>
         </div>
       </div>
 
@@ -80,7 +117,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-gray-700 text-center py-4 mt-8">
+      <div className="border-t border-gray-700 text-center py-10 mt-8">
         <p>Copyright © 2023 All Right Reserved</p>
       </div>
     </footer>

@@ -20,9 +20,9 @@ This command reads the `package.json` file and installs all the dependencies req
 
 To start the application in development mode, which offers live reloading and debugging capabilities, simply run:
 
-\```bash
+```bash
 npm run dev
-\```
+```
 
 This command fires up a development server, allowing you to test and iterate on the application in real-time.
 
@@ -35,6 +35,16 @@ The application consists of two distinct pages, each designed to showcase differ
 - **Home/Landing Page**: Located under `app/page.tsx`, this is the first page users will encounter. Accompanying components specific to this page can be found in `app/components`.
 
 - **Products Page**: Accessible at `app/products/[name]/page.tsx`, this page is designed to display product details dynamically. Like the homepage, its components reside in a similarly structured folder within the same path for consistency and ease of navigation.
+
+### New Features
+
+I've added some basic but essential functionalities to enhance the user experience and provide a glimpse into a fully functional e-commerce site:
+
+- **Shopping Cart Logic**: Allows users to add items to a cart, offering a preview of e-commerce functionality.
+
+- **Favorites Modalc**: Users can now mark items as favorites, which are accessible via a modal. This feature is designed to improve user engagement and personalize the shopping experience.
+
+- **Email Service for Subscription**: Implemented a basic email subscription service to simulate user subscriptions. This feature is critical for engaging with customers and keeping them updated with the latest products and offers.
 
 ## Updates
 
